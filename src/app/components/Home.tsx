@@ -114,6 +114,20 @@ const Home: FC = (...props) => {
         {!isFetching ? (
           <div className="columns">
             <div className="column content-list">
+              <div className="breadcrumb bi-line">
+                <ul className="is-marginless">
+                  <li>
+                    <NavLink to="/">
+                      <span>X</span>
+                    </NavLink>
+                  </li>
+                  <li className="is-active">
+                    <NavLink to="/">
+                      <span>News</span>
+                    </NavLink>
+                  </li>
+                </ul>
+              </div>
               {content.list.map(renderPost)}
               {content.list.length > 0 ? renderMoreButton() : null}
             </div>
