@@ -86,17 +86,17 @@ const Navbar: FC = (...props) => {
           <div className="navbar-start">
             <div className="navbar-item has-dropdown is-hoverable">
               <NavLink className={switchNavberItemClassname} to="/news">
-                Новости
+                News
               </NavLink>
               <div className="navbar-dropdown">
                 <NavLink className="navbar-item" to={'/news/tag/' + TAG.MOVIE}>
-                  Кино
+                  Movie
                 </NavLink>
                 <NavLink className="navbar-item" to={'/news/tag/' + TAG.SCIENCE}>
-                  Наука
+                  Science
                 </NavLink>
                 <NavLink className="navbar-item" to={'/news/tag/' + TAG.TECHNOLOGY}>
-                  Технологии
+                  Technologies
                 </NavLink>
               </div>
             </div>
@@ -107,20 +107,20 @@ const Navbar: FC = (...props) => {
                 }
                 to="/article"
               >
-                Статьи
+                Articles
               </NavLink>
               <div className="navbar-dropdown">
                 <NavLink className="navbar-item" to={'/article/tag/' + TAG.OPINION}>
-                  Мнения
+                  Opinion
                 </NavLink>
                 <NavLink className="navbar-item" to={'/article/tag/' + TAG.REVIEW}>
-                  Обзоры
+                  Review
                 </NavLink>
               </div>
             </div>
           </div>
           <div className="navbar-end">
-            <a className="search-button" title="Поиск" ref={(e) => (searchButtons[1] = e)} onClick={toggleSearch}>
+            <a className="search-button" title="Search" ref={(e) => (searchButtons[1] = e)} onClick={toggleSearch}>
               <i className="far fa-search fa-lg" />
             </a>
           </div>
@@ -134,7 +134,7 @@ const Navbar: FC = (...props) => {
                 className="input"
                 type="search"
                 autoComplete="off"
-                placeholder="Поиск..."
+                placeholder="Search..."
                 ref={searchInputRef}
                 onInput={searchPreview}
               />

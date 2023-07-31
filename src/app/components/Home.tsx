@@ -4,32 +4,15 @@ import Indicator from '@/app/components/containers/Indicator'
 import NotFound from '@/app/components/containers/errors/NotFound'
 import { Logo } from '@/svg/Logo'
 import { initialState } from '@/app/reducers/postPageReducer'
+import classNames from 'classnames'
+import { NavLink } from 'react-router-dom'
 
 const Home: FC = (...props) => {
-  let [state, setState] = useState(initialState)
-  let { isFetching, content } = state
-
-  let dispatch = useAppDispatch()
-
-  useEffect(() => {
-    // let postPage = useAppSelector((state) => state.postPage);
-    setTimeout(() => {
-      setState({
-        isFetching: false,
-        error: null,
-        content: {
-          list: [
-            { id: 'uid1', title: 'Под Таганрогом упал беспилотник' },
-            {
-              id: 'uid2',
-              title: 'В Чехии заявили об аресте имущества Евтушенкова в Карловых Варах',
-            },
-          ],
-          totalElements: 2,
-        },
-      })
-    }, 3000)
+  let [state, setState] = useState({
+    ...initialState,
+    page: 1,
   })
+  let { isFetching, content } = state
 
   let structuredData = {
     '@context': 'https://schema.org',
@@ -51,11 +34,68 @@ const Home: FC = (...props) => {
     },
   }
 
+  let dispatch = useAppDispatch()
+
+  useEffect(() => {
+    // let postPage = useAppSelector((state) => state.postPage);
+    setTimeout(() => {
+      setState({
+        ...state,
+        isFetching: false,
+        content: {
+          ...state.content,
+          list: [
+            { id: 'uid1', title: 'Под Таганрогом упал беспилотник' },
+            {
+              id: 'uid2',
+              title: 'В Чехии заявили об аресте имущества Евтушенкова в Карловых Варах',
+            },
+          ],
+          totalElements: 2,
+          totalPages: 2,
+        },
+      })
+    }, 3000)
+  })
+
+  const getMore = (callback?: () => void) => {
+    setState({ ...state, page: state.page + 1 })
+  }
+
   let renderIndicator = () => (
     <Fragment>
       {isFetching && content.list.length === 0 ? <Indicator /> : null}
-      {!isFetching && content.list.length === 0 ? <NotFound message="Публикации отсутствуют" /> : null}
+      {!isFetching && content.list.length === 0 ? <NotFound message="No more posts" /> : null}
     </Fragment>
+  )
+
+  let renderMoreButton = () =>
+    isFetching || state.page <= state.content.totalPages ? (
+      <div className="container my-1 is-centered">
+        <button className={classNames('button is-primary', { 'is-loading': isFetching })} onClick={() => getMore()}>
+          <i className="far fa-plus" />
+          More
+        </button>
+      </div>
+    ) : null
+
+  let renderPost = (post: PostContent, i: number) => (
+    <div key={'post-' + i} className="content divided">
+      <div className="column">
+        <div className="content-header">
+          <div className="column">
+            <div className="bi-line">
+              <NavLink to={'/post/' + post.uri}>
+                <h4>{post.title}</h4>
+              </NavLink>
+            </div>
+          </div>
+        </div>
+        <div className="content-block">
+          <p>{post.text}</p>
+        </div>
+      </div>
+    </div>
   )
 
   return (
@@ -74,9 +114,8 @@ const Home: FC = (...props) => {
         {!isFetching ? (
           <div className="columns">
             <div className="column content-list">
-              {content.list.map((post, i) => (
-                <div key={'home-' + i}>{post.title}</div>
-              ))}
+              {content.list.map(renderPost)}
+              {content.list.length > 0 ? renderMoreButton() : null}
             </div>
           </div>
         ) : null}
