@@ -74,8 +74,8 @@ const Home: FC = (...props) => {
         {!isFetching ? (
           <div className="columns">
             <div className="column content-list">
-              {content.list.map((post) => (
-                <div key={'home-'.concat(post.id)}>{post.title}</div>
+              {content.list.map((post, i) => (
+                <div key={'home-' + i}>{post.title}</div>
               ))}
             </div>
           </div>
