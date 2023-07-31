@@ -1,9 +1,10 @@
-import { NavLink } from "react-router-dom";
+import React from 'react'
+import { NavLink } from 'react-router-dom'
 
 const Footer = () => (
   <div className="footer-container">
     <div className="is-flex">
-      <div className="is-flex" style={{ marginBottom: "1rem" }}>
+      <div className="is-flex" style={{ marginBottom: '1rem' }}>
         <a href="https://github.com/artemiokost" title="Github">
           <i className="fab fa-github fa-2x" />
         </a>
@@ -21,8 +22,8 @@ const Footer = () => (
         </a>
       </div>
     </div>
-    <p>Your department of unexpected research</p>
+    <p>Enlightenment for everyone</p>
   </div>
-);
+)
 
-export default Footer;
+export default Footer

@@ -1,4 +1,4 @@
 interface FetchState {
-  isFetching: boolean;
-  error: string | null;
+  isFetching: boolean
+  error: string | null
 }

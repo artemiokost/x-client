@@ -1,22 +1,28 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-export const initialState: PostState = {
+export const initialState: SearchState = {
   isFetching: true,
   error: null,
-  content: {},
+  content: {
+    list: [],
+    totalElements: 0,
+  },
 }
 
-export const postSlice = createSlice({
-  name: 'post',
+export const searchSlice = createSlice({
+  name: 'search',
   initialState,
   reducers: {
     reset: () => initialState,
     fetchError(state, action: PayloadAction<string | null>) {
       state.isFetching = false
       state.error = action.payload
-      state.content = {}
+      state.content = {
+        list: [],
+        totalElements: 0,
+      }
     },
-    fetchSuccess(state, action: PayloadAction<PostContent>) {
+    fetchSuccess(state, action: PayloadAction<Page<PostContent>>) {
       state.isFetching = false
       state.error = null
       state.content = action.payload
@@ -24,5 +30,5 @@ export const postSlice = createSlice({
   },
 })
 
-export const postActions = postSlice.actions
-export const postReducer = postSlice.reducer
+export const searchActions = searchSlice.actions
+export const searchReducer = searchSlice.reducer

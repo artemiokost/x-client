@@ -1,4 +1,4 @@
 interface Page<T> {
-  list: T[];
-  totalElements: number;
+  list: T[]
+  totalElements: number
 }

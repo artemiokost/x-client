@@ -1,11 +1,12 @@
 interface PostContent {
-  title?: string;
+  id?: string | null
+  title?: string | null
 }
 
 interface PostState extends FetchState {
-  content: PostContent;
+  content: PostContent
 }
 
 interface PostPageState extends FetchState {
-  content: Page<PostContent>;
+  content: Page<PostContent>
 }
