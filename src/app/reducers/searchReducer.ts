@@ -5,7 +5,9 @@ export const initialState: SearchState = {
   error: null,
   content: {
     list: [],
+    pageNumber: 1,
     totalElements: 0,
+    totalPages: 0,
   },
 }
 
@@ -19,7 +21,9 @@ export const searchSlice = createSlice({
       state.error = action.payload
       state.content = {
         list: [],
+        pageNumber: 1,
         totalElements: 0,
+        totalPages: 0,
       }
     },
     fetchSuccess(state, action: PayloadAction<Page<PostContent>>) {

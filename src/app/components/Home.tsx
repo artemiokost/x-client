@@ -1,18 +1,15 @@
-import { FC, Fragment, useEffect, useState } from 'react'
-import { useAppDispatch } from '@/app/hooks/hooks'
+import { FC, Fragment, useEffect } from 'react'
+import { useAppDispatch, useAppSelector } from '@/app/hooks/hooks'
 import Indicator from '@/app/components/containers/Indicator'
 import NotFound from '@/app/components/containers/errors/NotFound'
 import { Logo } from '@/svg/Logo'
-import { initialState } from '@/app/reducers/postPageReducer'
 import classNames from 'classnames'
 import { NavLink } from 'react-router-dom'
+import { postPageActions } from '@/app/reducers/postPageReducer'
 
 const Home: FC = (...props) => {
-  let [state, setState] = useState({
-    ...initialState,
-    page: 1,
-  })
-  let { isFetching, content } = state
+  let postPage = useAppSelector((state) => state.postPage)
+  let { isFetching, content } = postPage
 
   let structuredData = {
     '@context': 'https://schema.org',
@@ -37,29 +34,28 @@ const Home: FC = (...props) => {
   let dispatch = useAppDispatch()
 
   useEffect(() => {
-    // let postPage = useAppSelector((state) => state.postPage);
-    setTimeout(() => {
-      setState({
-        ...state,
-        isFetching: false,
-        content: {
-          ...state.content,
-          list: [
-            { id: 'uid1', title: 'Под Таганрогом упал беспилотник' },
-            {
-              id: 'uid2',
-              title: 'В Чехии заявили об аресте имущества Евтушенкова в Карловых Варах',
-            },
-          ],
-          totalElements: 2,
-          totalPages: 2,
+    let fetchBody = {
+      list: [
+        { id: 'uid1', title: 'Под Таганрогом упал беспилотник' },
+        {
+          id: 'uid2',
+          title: 'В Чехии заявили об аресте имущества Евтушенкова в Карловых Варах',
         },
-      })
-    }, 3000)
+      ],
+      pageNumber: 1,
+      totalElements: 2,
+      totalPages: 2,
+    }
+    setTimeout(() => dispatch(postPageActions.fetchSuccess(fetchBody)), 3000)
   })
 
   const getMore = (callback?: () => void) => {
-    setState({ ...state, page: state.page + 1 })
+    dispatch(
+      postPageActions.fetchSuccess({
+        ...content,
+        pageNumber: content.pageNumber + 1,
+      })
+    )
   }
 
   let renderIndicator = () => (
@@ -70,7 +66,7 @@ const Home: FC = (...props) => {
   )
 
   let renderMoreButton = () =>
-    isFetching || state.page <= state.content.totalPages ? (
+    isFetching || content.pageNumber <= content.totalPages ? (
       <div className="container my-1 is-centered">
         <button className={classNames('button is-primary', { 'is-loading': isFetching })} onClick={() => getMore()}>
           <i className="far fa-plus" />

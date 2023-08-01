@@ -1,5 +1,5 @@
 {
-  "name": "x-client",
+  "name": "@artemiokost/x-client",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -11,6 +11,7 @@
     "watch-css": "npm run build-css && sass --no-source-map --watch public/sass/illumi.sass:public/css/illumi.css"
   },
   "dependencies": {
+    "@artemiokost/x-editor": "^1.0.0",
     "@reduxjs/toolkit": "^1.9.5",
     "classnames": "^2.3.2",
     "lodash": "^4.17.21",
