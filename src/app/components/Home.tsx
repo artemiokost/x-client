@@ -42,7 +42,7 @@ const Home: FC = (...props) => {
           title: 'В Чехии заявили об аресте имущества Евтушенкова в Карловых Варах',
         },
       ],
-      pageNumber: 1,
+      number: 1,
       totalElements: 2,
       totalPages: 2,
     }
@@ -53,7 +53,7 @@ const Home: FC = (...props) => {
     dispatch(
       postPageActions.fetchSuccess({
         ...content,
-        pageNumber: content.pageNumber + 1,
+        number: content.number + 1,
       })
     )
   }
@@ -66,7 +66,7 @@ const Home: FC = (...props) => {
   )
 
   let renderMoreButton = () =>
-    isFetching || content.pageNumber <= content.totalPages ? (
+    isFetching || content.number <= content.totalPages ? (
       <div className="container my-1 is-centered">
         <button className={classNames('button is-primary', { 'is-loading': isFetching })} onClick={() => getMore()}>
           <i className="far fa-plus" />

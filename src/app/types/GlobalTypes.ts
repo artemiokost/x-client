@@ -1,6 +1,6 @@
 interface Page<T> {
   list: T[]
-  pageNumber: number
+  number: number
   totalElements: number
   totalPages: number
 }

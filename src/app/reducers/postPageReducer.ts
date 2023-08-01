@@ -5,7 +5,7 @@ export const initialState: PostPageState = {
   error: null,
   content: {
     list: [],
-    pageNumber: 1,
+    number: 1,
     totalElements: 0,
     totalPages: 0,
   },
@@ -21,7 +21,7 @@ export const postPageSlice = createSlice({
       state.error = action.payload
       state.content = {
         list: [],
-        pageNumber: 1,
+        number: 1,
         totalElements: 0,
         totalPages: 0,
       }
