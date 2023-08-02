@@ -1,18 +1,20 @@
 import '../../public/css/illumi.css'
 import { FC, PropsWithChildren } from 'react'
-import { Head, Html } from 'next/document'
 import ReduxProvider from '@/app/components/ReduxProvider'
 
 const RootLayout: FC<PropsWithChildren> = ({ children }) => {
   return (
-    <Html lang='en'>
-      <Head>
+    <ReduxProvider>
+      <html lang='en'>
+      <head>
         <script defer src='/lib/fontawesome/all.min.js' data-auto-replace-svg='nest'></script>
-      </Head>
+        <title>X</title>
+      </head>
       <body className='has-navbar-fixed-top-desktop'>
-      <ReduxProvider>{children}</ReduxProvider>
+      {children}
       </body>
-    </Html>
+      </html>
+    </ReduxProvider>
   )
 }
 

@@ -1,3 +1,4 @@
+'use client'
 import { FC } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import Root from '@/app/components/containers/Root'

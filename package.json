@@ -22,8 +22,7 @@
     "react-redux": "^8.1.1",
     "react-router-dom": "^6.14.2",
     "redux-devtools-extension": "^2.13.9",
-    "redux-persist": "^6.0.0",
-    "typescript": "5.1.6"
+    "redux-persist": "^6.0.0"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.196",
@@ -31,7 +30,8 @@
     "@types/react": "18.2.17",
     "@types/react-dom": "18.2.7",
     "@types/redux-persist": "^4.3.1",
-    "prettier": "^3.0.0"
+    "prettier": "^3.0.0",
+    "typescript": "5.1.6"
   },
   "prettier": {
     "printWidth": 120,

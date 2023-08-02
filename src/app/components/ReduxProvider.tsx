@@ -11,11 +11,13 @@ type ReduxProviderProps = {
 
 const ReduxProvider: FC<ReduxProviderProps> = ({ children }) => {
   let persistor = persistStore(store)
-  return <Provider store={store}>
-    <PersistGate persistor={persistor}>
-      {children}
-    </PersistGate>
-  </Provider>
+  return (
+    <Provider store={store}>
+      <PersistGate persistor={persistor}>
+        {children}
+      </PersistGate>
+    </Provider>
+  )
 }
 
 export default ReduxProvider
