@@ -6,7 +6,7 @@ import Footer from '@/app/components/containers/Footer'
 export default function HomePage() {
   return (
     <BrowserRouter>
-      <div className="wrapper">
+      <div className='wrapper'>
         <Navbar />
         <Root />
         <Footer />

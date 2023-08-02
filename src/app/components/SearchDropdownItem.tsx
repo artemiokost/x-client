@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import { NavLink } from 'react-router-dom'
-import { createPreview } from '@/app/utils/Helpers'
+import { createPreview } from '@/lib/utils/Helpers'
 
 interface SearchDropdownItemProps {
   id?: string | null
@@ -15,9 +15,9 @@ const SearchDropdownItem: FC<SearchDropdownItemProps> = ({ id, content, title, u
 
   return (
     <li id={'entry-' + id}>
-      <div className="is-block" onClick={clearSearchInput}>
-        <NavLink className="navbar-item" to={'/post/' + uri}>
-          <div className="is-block">
+      <div className='is-block' onClick={clearSearchInput}>
+        <NavLink className='navbar-item' to={'/post/' + uri}>
+          <div className='is-block'>
             <h5>{title}</h5>
             <p>{preview}</p>
           </div>
