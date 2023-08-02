@@ -1,6 +1,7 @@
+'use client'
 import React, { FC } from 'react'
 import { NavLink } from 'react-router-dom'
-import { createPreview } from '@/app/utils/Helpers'
+import { createPreview } from '@/lib/utils/Helpers'
 
 interface SearchDropdownItemProps {
   id?: string | null

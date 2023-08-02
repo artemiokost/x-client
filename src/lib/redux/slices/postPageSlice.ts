@@ -11,7 +11,7 @@ export const initialState: PostPageState = {
   },
 }
 
-export const postPageSlice = createSlice({
+const postPageSlice = createSlice({
   name: 'postPage',
   initialState,
   reducers: {
@@ -34,5 +34,4 @@ export const postPageSlice = createSlice({
   },
 })
 
-export const postPageActions = postPageSlice.actions
-export const postPageReducer = postPageSlice.reducer
+export default postPageSlice

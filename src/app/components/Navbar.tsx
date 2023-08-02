@@ -1,11 +1,12 @@
+'use client'
 import React, { FC, useRef, useState } from 'react'
 import { debounce } from 'lodash'
 import { NavLink } from 'react-router-dom'
 import { Brand } from '@/svg/Brand'
-import { TAG } from '@/app/constants/app'
+import { TAG } from '@/lib/constants/app'
+import { getSearchPreview } from '@/lib/redux/thunk/searchThunk'
+import { useAppDispatch } from '@/lib/hooks/hooks'
 import SearchDropdown from '@/app/components/SearchDropdown'
-import { getSearchPreview } from '@/app/api/searchApi'
-import { useAppDispatch } from '@/app/hooks/hooks'
 
 interface SearchDropDownProps {
   isOpen: boolean
@@ -69,72 +70,72 @@ const Navbar: FC = (...props) => {
   let renderSearchDropdown = () => <SearchDropdown searchKey={state.searchKey} clearSearchInput={clearSearchInput} />
 
   return (
-    <div className="navbar has-shadow is-fixed-top-desktop">
-      <div className="container">
-        <div className="navbar-brand">
-          <a className="navbar-burger" ref={burgerButtonRef} onClick={toggleMenu}>
-            <i className="far fa-bars fa-lg" />
+    <div className='navbar has-shadow is-fixed-top-desktop'>
+      <div className='container'>
+        <div className='navbar-brand'>
+          <a className='navbar-burger' ref={burgerButtonRef} onClick={toggleMenu}>
+            <i className='far fa-bars fa-lg' />
           </a>
-          <NavLink className="navbar-item" to="/">
+          <NavLink className='navbar-item' to='/'>
             <Brand width={40} height={40} ref={brandRef} />
           </NavLink>
-          <a className="search-button" ref={(e) => (searchButtons[0] = e)} onClick={toggleSearch}>
-            <i className="far fa-search fa-lg" />
+          <a className='search-button' ref={(e) => (searchButtons[0] = e)} onClick={toggleSearch}>
+            <i className='far fa-search fa-lg' />
           </a>
         </div>
-        <div className="navbar-menu" ref={menuRef}>
-          <div className="navbar-start">
-            <div className="navbar-item has-dropdown is-hoverable">
-              <NavLink className={switchNavberItemClassname} to="/news">
+        <div className='navbar-menu' ref={menuRef}>
+          <div className='navbar-start'>
+            <div className='navbar-item has-dropdown is-hoverable'>
+              <NavLink className={switchNavberItemClassname} to='/news'>
                 News
               </NavLink>
-              <div className="navbar-dropdown">
-                <NavLink className="navbar-item" to={'/news/tag/' + TAG.MOVIE}>
+              <div className='navbar-dropdown'>
+                <NavLink className='navbar-item' to={'/news/tag/' + TAG.MOVIE}>
                   Movie
                 </NavLink>
-                <NavLink className="navbar-item" to={'/news/tag/' + TAG.SCIENCE}>
+                <NavLink className='navbar-item' to={'/news/tag/' + TAG.SCIENCE}>
                   Science
                 </NavLink>
-                <NavLink className="navbar-item" to={'/news/tag/' + TAG.TECHNOLOGY}>
+                <NavLink className='navbar-item' to={'/news/tag/' + TAG.TECHNOLOGY}>
                   Technologies
                 </NavLink>
               </div>
             </div>
-            <div className="navbar-item has-dropdown is-hoverable">
+            <div className='navbar-item has-dropdown is-hoverable'>
               <NavLink
                 className={(props) =>
                   props.isActive ? 'navbar-item is-semibold is-active' : 'navbar-item is-semibold'
                 }
-                to="/article"
+                to='/article'
               >
                 Articles
               </NavLink>
-              <div className="navbar-dropdown">
-                <NavLink className="navbar-item" to={'/article/tag/' + TAG.OPINION}>
+              <div className='navbar-dropdown'>
+                <NavLink className='navbar-item' to={'/article/tag/' + TAG.OPINION}>
                   Opinion
                 </NavLink>
-                <NavLink className="navbar-item" to={'/article/tag/' + TAG.REVIEW}>
+                <NavLink className='navbar-item' to={'/article/tag/' + TAG.REVIEW}>
                   Review
                 </NavLink>
               </div>
             </div>
           </div>
-          <div className="navbar-end">
-            <a className="search-button" title="Search" ref={(e) => (searchButtons[1] = e)} onClick={toggleSearch}>
-              <i className="far fa-search fa-lg" />
+          <div className='navbar-end'>
+            <a className='search-button' title='Search' ref={(e) => (searchButtons[1] = e)} onClick={toggleSearch}>
+              <i className='far fa-search fa-lg' />
             </a>
           </div>
         </div>
       </div>
-      <div className="navbar-search" ref={searchBoxRef}>
-        <div className="container">
-          <div className="search-field">
-            <div className="control">
+      <div className='navbar-search' ref={searchBoxRef}>
+        <div className='container'>
+          <div className='search-field'>
+            <div className='control'>
               <input
-                className="input"
-                type="search"
-                autoComplete="off"
-                placeholder="Search..."
+                className='input'
+                type='search'
+                autoComplete='off'
+                placeholder='Search...'
                 ref={searchInputRef}
                 onInput={searchPreview}
               />

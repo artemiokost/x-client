@@ -1,10 +1,11 @@
+'use client'
 import React, { FC, useState } from 'react'
 import SearchDropdownItem from './SearchDropdownItem'
 import { NavLink } from 'react-router-dom'
-import { DEFAULT_SEARCH_PREVIEW_SIZE } from '@/app/constants/app'
+import { DEFAULT_SEARCH_PREVIEW_SIZE } from '@/lib/constants/app'
 import Indicator from '@/app/components/containers/Indicator'
 import NotFound from '@/app/components/containers/errors/NotFound'
-import { useAppSelector } from '@/app/hooks/hooks'
+import { useAppSelector } from '@/lib/hooks/hooks'
 
 interface SearchDropDownProps {
   searchKey: string | null | undefined

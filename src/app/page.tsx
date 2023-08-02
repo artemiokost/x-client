@@ -1,12 +1,13 @@
+import { FC } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import Root from '@/app/components/containers/Root'
 import Navbar from '@/app/components/Navbar'
 import Footer from '@/app/components/containers/Footer'
 
-export default function HomePage() {
+const HomePage: FC = () => {
   return (
     <BrowserRouter>
-      <div className="wrapper">
+      <div className='wrapper'>
         <Navbar />
         <Root />
         <Footer />
@@ -14,3 +15,5 @@ export default function HomePage() {
     </BrowserRouter>
   )
 }
+
+export default HomePage
