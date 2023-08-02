@@ -16,9 +16,9 @@ const SearchDropdownItem: FC<SearchDropdownItemProps> = ({ id, content, title, u
 
   return (
     <li id={'entry-' + id}>
-      <div className="is-block" onClick={clearSearchInput}>
-        <NavLink className="navbar-item" to={'/post/' + uri}>
-          <div className="is-block">
+      <div className='is-block' onClick={clearSearchInput}>
+        <NavLink className='navbar-item' to={'/post/' + uri}>
+          <div className='is-block'>
             <h5>{title}</h5>
             <p>{preview}</p>
           </div>
